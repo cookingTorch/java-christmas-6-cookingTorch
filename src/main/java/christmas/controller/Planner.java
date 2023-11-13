@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.model.Event;
+import christmas.util.TextUtil;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -9,23 +10,41 @@ import java.util.List;
 public class Planner {
     private final InputView inputView;
     private final OutputView outputView;
-
-    private Event event;
+    private final TextUtil textUtil;
 
     public Planner() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.textUtil = new TextUtil();
     }
 
-    public void showChristmasPromotion() {
-        outputView.printGreetingEvent();
-        Integer date = tryReadDate();
-        event = tryGenerateEvent(date);
-        outputView.printEventPreview(event.buildDateMessage());
-        showOrderMenus();
-        Integer totalAmount = showTotalAmount();
-        showComplimentaryMenu(totalAmount);
+    public void christmasPromotion() {
+        Event event;
+
+        showGreetingEvent();
+        event = plannerInput();
+        showEventPreview(event);
+        plannerOutput(event);
     }
+
+    private Event plannerInput() {
+        Integer date;
+
+        date = tryReadDate();
+        return tryGenerateEvent(date);
+    }
+
+    private void plannerOutput(Event event) {
+        Integer totalAmount;
+        List<Integer> benefitAmounts;
+
+        showOrderMenus(event);
+        totalAmount = findTotalAmount(event);
+        showTotalAmount(totalAmount);
+        showComplimentaryMenu(event, totalAmount);
+        benefitAmounts = findBenefitAmounts(event, totalAmount);
+        showBenefitDetails(benefitAmounts);
+    };
 
     private Integer tryReadDate() {
         while (true) {
@@ -53,22 +72,43 @@ public class Planner {
         return new Event(date, inputs);
     }
 
-    private void showOrderMenus() {
+    private Integer findTotalAmount(Event event) {
+        return event.calculateTotalAmount();
+    }
+
+    private List<Integer> findBenefitAmounts(Event event, Integer totalAmount) {
+        return event.calculateBenefitAmounts(totalAmount);
+    }
+
+    private void showGreetingEvent() {
+        outputView.printGreetingEvent();
+    }
+
+    private void showEventPreview(Event event) {
+        String dateMessage = event.buildDateMessage();
+
+        outputView.printEventPreview(dateMessage);
+    }
+
+    private void showOrderMenus(Event event) {
         List<String> orderMenus = event.buildOrderMenus();
 
         outputView.printOrderMenus(orderMenus);
     }
 
-    private Integer showTotalAmount() {
-        Integer totalAmount = event.calculateTotalAmount();
-
+    private void showTotalAmount(Integer totalAmount) {
         outputView.printTotalAmount(totalAmount);
-        return totalAmount;
     }
 
-    private void showComplimentaryMenu(Integer totalAmount) {
+    private void showComplimentaryMenu(Event event, Integer totalAmount) {
         String complimentaryMenu = event.buildComplimentaryMenu(totalAmount);
 
         outputView.printComplimentaryMenu(complimentaryMenu);
+    }
+
+    private void showBenefitDetails(List<Integer> benefitAmounts) {
+        List<String> benefitDetails = textUtil.buildBenefitDetails(benefitAmounts);
+
+        outputView.printBenefitDetails(benefitDetails);
     }
 }

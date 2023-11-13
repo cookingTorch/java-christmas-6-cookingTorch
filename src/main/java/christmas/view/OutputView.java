@@ -38,6 +38,14 @@ public class OutputView {
         System.out.println(complimentaryMenu);
     }
 
+    public void printBenefitDetails(List<String> benefitDetails) {
+        System.out.println();
+        System.out.println(Messages.BENEFIT_DETAILS);
+        for (String line : benefitDetails) {
+            System.out.println(line);
+        }
+    }
+
     public void printError(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }

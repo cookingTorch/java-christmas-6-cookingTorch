@@ -1,6 +1,7 @@
 package christmas.model;
 
 import christmas.constants.Errors;
+import christmas.enums.MenuTypes;
 import christmas.enums.Menus;
 import christmas.constants.Messages;
 
@@ -21,6 +22,20 @@ public class Orders {
 
     public Integer calculateCost() {
         return (menu.getCost() * number);
+    }
+
+    public Integer isDessert() {
+        if (menu.getMenuType() == MenuTypes.DESSERT) {
+            return number;
+        }
+        return 0;
+    }
+
+    public Integer isMain() {
+        if (menu.getMenuType() == MenuTypes.MAIN) {
+            return number;
+        }
+        return 0;
     }
 
     private Menus findMenu(String inputName) {

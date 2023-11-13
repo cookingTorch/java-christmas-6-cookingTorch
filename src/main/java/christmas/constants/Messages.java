@@ -7,6 +7,7 @@ public class Messages {
     public static final String HYPHEN = "-";
     public static final String COMMA = ",";
     public static final String SPACE = " ";
+    public static final String COLON = ":";
     public static final String LEFT_BRACKET = "<";
     public static final String RIGHT_BRACKET = ">";
     public static final String MONTH = Constants.DECEMBER + "월" + SPACE;
@@ -25,6 +26,7 @@ public class Messages {
     public static final String ORDER_MENU = LEFT_BRACKET + "주문 메뉴" + RIGHT_BRACKET;
     public static final String TOTAL_AMOUNT = LEFT_BRACKET + "할인 전 총주문 금액" + RIGHT_BRACKET;
     public static final String COMPLIMENTARY_MENU = LEFT_BRACKET + "증정 메뉴" + RIGHT_BRACKET;
+    public static final String BENEFIT_DETAILS = LEFT_BRACKET + "혜택 내역" + RIGHT_BRACKET;
 
     private Messages() {
     }
