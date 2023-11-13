@@ -150,4 +150,26 @@ public class ChristmasTest {
         assertThat(calculator.calculateAfterDiscount(169500, benefitAmounts))
                 .isEqualTo(165100);
     }
+
+    @DisplayName("총혜택 금액에 따른 배지를 증정한다.")
+    @Test
+    void outputEventBadge() {
+        Event event = new Event(23, new String[] {"타파스-1","티본스테이크-1","바비큐립-1"});
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(114500);
+        Integer totalBenefit = calculator.calculateTotalBenefit(benefitAmounts);
+
+        assertThat(textUtil.buildEventBadge(totalBenefit))
+                .isEqualTo("별");
+    }
+
+    @DisplayName("받는 배지가 없으면 없음을 출력한다.")
+    @Test
+    void nothingEventBadge() {
+        Event event = new Event(25, new String[] {"타파스-1","티본스테이크-1","바비큐립-1"});
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(114500);
+        Integer totalBenefit = calculator.calculateTotalBenefit(benefitAmounts);
+
+        assertThat(textUtil.buildEventBadge(totalBenefit))
+                .isEqualTo("없음");
+    }
 }
