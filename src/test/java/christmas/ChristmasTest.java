@@ -1,15 +1,19 @@
 package christmas;
 
 import christmas.model.Event;
+import christmas.util.TextUtil;
 import christmas.util.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ChristmasTest {
     private final Validator validator = new Validator();
+    private final TextUtil textUtil = new TextUtil();
 
     @DisplayName("방문 날짜가 숫자가 아니면 에러가 발생한다.")
     @Test
@@ -84,7 +88,7 @@ public class ChristmasTest {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
 
         assertThat(event.buildComplimentaryMenu(169500))
-                .contains("샴페인");
+                .isEqualTo("샴페인 1개");
     }
 
     @DisplayName("12만 원이 넘지 않으면 증정 메뉴가 없다.")
@@ -93,6 +97,35 @@ public class ChristmasTest {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-1","바비큐립-1"});
 
         assertThat(event.buildComplimentaryMenu(114500))
-                .contains("없음");
+                .isEqualTo("없음");
+    }
+
+    @DisplayName("혜택 내역에 출력할 숫자들을 계산한다.")
+    @Test
+    void outputBenefitAmounts() {
+        Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
+
+        assertThat(event.calculateBenefitAmounts(169500))
+                .containsExactly(3400, 0, 0, 1000, 25000);
+    }
+
+    @DisplayName("혜택이 있는 내역들만 출력한다.")
+    @Test
+    void outputBenefitDetails() {
+        Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(169500);
+
+        assertThat(textUtil.buildBenefitDetails(benefitAmounts))
+                .containsExactly("크리스마스 디데이 할인: -3,400원", "특별 할인: -1,000원", "증정 이벤트: -25,000원");
+    }
+
+    @DisplayName("받는 혜택이 없으면 없음을 출력한다.")
+    @Test
+    void nothingBenefitDetails() {
+        Event event = new Event(26, new String[] {"타파스-1","티본스테이크-1","바비큐립-1"});
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(114500);
+
+        assertThat(textUtil.buildBenefitDetails(benefitAmounts))
+                .containsExactly("없음");
     }
 }
