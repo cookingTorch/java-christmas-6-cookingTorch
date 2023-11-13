@@ -66,6 +66,13 @@ public class ChristmasTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("음료만 주문하면 에러가 발생한다.")
+    @Test
+    void orderOnlyBeverages() {
+        assertThatThrownBy(() -> validator.validateMenu("제로콜라-1,레드와인-2,샴페인-1"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("주문 메뉴를 출력하기 위해 문자열을 만든다.")
     @Test
     void outputOrderMenus() {
