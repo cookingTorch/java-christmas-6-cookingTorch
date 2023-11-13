@@ -39,7 +39,7 @@ public class Event {
     }
 
     public String buildComplimentaryMenu(Integer totalAmount) {
-        if (isOverMinAmount()) {
+        if (isOverMinAmount(totalAmount)) {
             return (Menus.CHAMPAGNE.getName()
                     + Messages.SPACE + Constants.ONE + Messages.PIECE);
         }
@@ -55,9 +55,7 @@ public class Event {
         return orders;
     }
 
-    private boolean isOverMinAmount() {
-        Integer totalAmount = calculateTotalAmount();
-
+    private boolean isOverMinAmount(Integer totalAmount) {
         return (totalAmount > Constants.MIN_AMOUNT);
     }
 }
