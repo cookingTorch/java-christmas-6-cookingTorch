@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import christmas.constants.Messages;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,10 @@ public class Event {
     public Event(Integer date, String[] inputs) {
         this.date = date;
         this.orders = generateOrders(inputs);
+    }
+
+    public String dateMessage() {
+        return (Messages.MONTH + date.toString() + Messages.DAY);
     }
 
     private List<Orders> generateOrders(String[] inputs) {

@@ -13,8 +13,10 @@ public class Planner {
     }
 
     public void showChristmasPromotion() {
+        outputView.printGreetingEvent();
         Integer date = tryReadDate();
         Event event = tryGenerateEvent(date);
+        outputView.printEventPreview(event.dateMessage());
     }
 
     private Integer tryReadDate() {
