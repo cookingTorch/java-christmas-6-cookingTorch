@@ -14,6 +14,7 @@ public class Planner {
 
     public void showChristmasPromotion() {
         Integer date = tryReadDate();
+        Event event = tryGenerateEvent(date);
     }
 
     private Integer tryReadDate() {
@@ -24,5 +25,21 @@ public class Planner {
                 outputView.printError(e);
             }
         }
+    }
+
+    private Event tryGenerateEvent(Integer date) {
+        while (true) {
+            try {
+                return generateEvent(date);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
+        }
+    }
+
+    private Event generateEvent(Integer date) {
+        String[] inputs = inputView.readMenu();
+
+        return new Event(date, inputs);
     }
 }

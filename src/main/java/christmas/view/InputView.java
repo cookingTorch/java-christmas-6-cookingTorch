@@ -5,7 +5,7 @@ import christmas.constants.Messages;
 import christmas.validator.Validator;
 
 public class InputView {
-    private Validator validator;
+    private final Validator validator;
 
     public InputView() {
         this.validator = new Validator();
@@ -17,5 +17,13 @@ public class InputView {
 
         validator.validateDate(input);
         return Integer.parseInt(input);
+    }
+
+    public String[] readMenu() {
+        System.out.println(Messages.ORDER_REQUEST);
+        String input = Console.readLine();
+
+        validator.validateMenu(input);
+        return input.split(Messages.COMMA);
     }
 }
