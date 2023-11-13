@@ -131,7 +131,7 @@ public class ChristmasTest {
                 .containsExactly("없음");
     }
 
-    @DisplayName("혜택 내역들을 더해 총혜택 금액을 계산한다.")
+    @DisplayName("혜택 내역의 금액을 모두 더해 총혜택 금액을 구한다.")
     @Test
     void outputTotalBenefit() {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
@@ -139,5 +139,15 @@ public class ChristmasTest {
 
         assertThat(calculator.calculateTotalBenefit(benefitAmounts))
                 .isEqualTo(29400);
+    }
+
+    @DisplayName("총주문 금액에서 증정 이벤트를 제외한 혜택들을 빼 할인 후 금액을 계산한다.")
+    @Test
+    void outputAfterDiscount() {
+        Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(169500);
+
+        assertThat(calculator.calculateAfterDiscount(169500, benefitAmounts))
+                .isEqualTo(165100);
     }
 }
