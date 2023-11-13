@@ -1,5 +1,6 @@
-package christmas.domain;
+package christmas.controller;
 
+import christmas.model.Event;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 

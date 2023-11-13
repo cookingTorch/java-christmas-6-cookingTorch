@@ -1,5 +1,7 @@
 package christmas.constants;
 
+import christmas.enums.Menus;
+
 public class Messages {
     public static final String REGULAR_NUMBER = "\\d+";
     public static final String HYPHEN = "-";

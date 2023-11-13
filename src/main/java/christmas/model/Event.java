@@ -1,7 +1,7 @@
-package christmas.domain;
+package christmas.model;
 
 import christmas.constants.Constants;
-import christmas.constants.Menus;
+import christmas.enums.Menus;
 import christmas.constants.Messages;
 
 import java.util.ArrayList;

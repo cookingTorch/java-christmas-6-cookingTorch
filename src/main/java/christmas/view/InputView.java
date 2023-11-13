@@ -2,7 +2,7 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.constants.Messages;
-import christmas.validator.Validator;
+import christmas.util.Validator;
 
 public class InputView {
     private final Validator validator;

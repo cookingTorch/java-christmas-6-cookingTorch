@@ -1,6 +1,5 @@
 package christmas.view;
 
-import christmas.constants.Menus;
 import christmas.constants.Messages;
 
 import java.text.NumberFormat;

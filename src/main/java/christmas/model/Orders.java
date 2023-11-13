@@ -1,7 +1,7 @@
-package christmas.domain;
+package christmas.model;
 
 import christmas.constants.Errors;
-import christmas.constants.Menus;
+import christmas.enums.Menus;
 import christmas.constants.Messages;
 
 public class Orders {

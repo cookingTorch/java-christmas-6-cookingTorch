@@ -1,8 +1,8 @@
-package christmas.validator;
+package christmas.util;
 
 import christmas.constants.Constants;
 import christmas.constants.Errors;
-import christmas.constants.Menus;
+import christmas.enums.Menus;
 import christmas.constants.Messages;
 
 import java.util.ArrayList;
