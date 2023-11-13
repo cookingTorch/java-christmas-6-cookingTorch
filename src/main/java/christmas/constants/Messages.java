@@ -28,6 +28,7 @@ public class Messages {
     public static final String COMPLIMENTARY_MENU = LEFT_BRACKET + "증정 메뉴" + RIGHT_BRACKET;
     public static final String BENEFIT_DETAILS = LEFT_BRACKET + "혜택 내역" + RIGHT_BRACKET;
     public static final String TOTAL_BENEFIT = LEFT_BRACKET + "총혜택 금액" + RIGHT_BRACKET;
+    public static final String AFTER_DISCOUNT = LEFT_BRACKET + "할인 후 예상 결제 금액" + RIGHT_BRACKET;
 
     private Messages() {
     }

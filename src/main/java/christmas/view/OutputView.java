@@ -6,6 +6,12 @@ import java.text.NumberFormat;
 import java.util.List;
 
 public class OutputView {
+    private final NumberFormat formatter;
+
+    public OutputView() {
+        this.formatter = NumberFormat.getNumberInstance();
+    }
+
     public void printGreetingEvent() {
         System.out.println(Messages.GREETING_EVENT);
     }
@@ -24,8 +30,6 @@ public class OutputView {
     }
 
     public void printTotalAmount(Integer totalAmount) {
-        NumberFormat formatter = NumberFormat.getNumberInstance();
-
         System.out.println();
         System.out.println(Messages.TOTAL_AMOUNT);
         System.out.print(formatter.format(totalAmount));
@@ -47,11 +51,16 @@ public class OutputView {
     }
 
     public void printTotalBenefit(Integer totalBenefit) {
-        NumberFormat formatter = NumberFormat.getNumberInstance();
-
         System.out.println();
         System.out.println(Messages.TOTAL_BENEFIT);
         System.out.print(formatter.format(-totalBenefit));
+        System.out.println(Messages.WON);
+    }
+
+    public void printAfterDiscount(Integer afterDiscount) {
+        System.out.println();
+        System.out.println(Messages.AFTER_DISCOUNT);
+        System.out.print(formatter.format(afterDiscount));
         System.out.println(Messages.WON);
     }
 

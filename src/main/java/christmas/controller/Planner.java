@@ -48,6 +48,7 @@ public class Planner {
         benefitAmounts = findBenefitAmounts(event, totalAmount);
         showBenefitDetails(benefitAmounts);
         showTotalBenefit(benefitAmounts);
+        showAfterDiscount(totalAmount, benefitAmounts);
     };
 
     private Integer tryReadDate() {
@@ -120,5 +121,11 @@ public class Planner {
         Integer totalBenefit = calculator.calculateTotalBenefit(benefitAmounts);
 
         outputView.printTotalBenefit(totalBenefit);
+    }
+
+    private void showAfterDiscount(Integer totalAmount, List<Integer> benefitAmounts) {
+        Integer afterDiscount = calculator.calculateAfterDiscount(totalAmount, benefitAmounts);
+
+        outputView.printAfterDiscount(afterDiscount);
     }
 }

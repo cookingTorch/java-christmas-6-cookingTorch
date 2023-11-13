@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TextUtil {
+    private final NumberFormat formatter;
+
+    public TextUtil() {
+        this.formatter = NumberFormat.getNumberInstance();
+    }
+
     public List<String> buildBenefitDetails(List<Integer> benefitAmounts) {
         List<String> benefitDetails = new ArrayList<>();
         Benefit[] benefits = Benefit.values();
@@ -32,7 +38,6 @@ public class TextUtil {
 
     private String buildLine(Integer amount, Benefit benefit) {
         String line;
-        NumberFormat formatter = NumberFormat.getNumberInstance();
 
         line = benefit.getName();
         line += Messages.COLON + Messages.SPACE;
