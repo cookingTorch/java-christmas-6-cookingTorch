@@ -14,6 +14,8 @@ public class Planner {
     private final Calculator calculator;
     private final TextUtil textUtil;
 
+    private Event event;
+
     public Planner() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
@@ -22,42 +24,48 @@ public class Planner {
     }
 
     public void christmasPromotion() {
-        Event event;
-
         showGreetingEvent();
-        event = plannerInput();
-        showEventPreview(event);
-        plannerOutput(event);
+        plannerInput();
+        showEventPreview();
+        plannerOutput();
     }
 
-    private Event plannerInput() {
+    private void plannerInput() {
         Integer date;
 
-        date = tryReadDate();
-        return tryGenerateEvent(date);
+        date = tryGenerateDate();
+        event = tryGenerateEvent(date);
     }
 
-    private void plannerOutput(Event event) {
+    private void plannerOutput() {
         Integer totalAmount;
         Integer totalBenefit;
         List<Integer> benefitAmounts;
 
-        showOrderMenus(event);
-        totalAmount = findTotalAmount(event);
-        showTotalAmount(totalAmount);
-        showComplimentaryMenu(event, totalAmount);
-        benefitAmounts = findBenefitAmounts(event, totalAmount);
-        showBenefitDetails(benefitAmounts);
+        totalAmount = findTotalAmount();
+        orderInformation(totalAmount);
+        benefitAmounts = findBenefitAmounts(totalAmount);
         totalBenefit = findTotalBenefit(benefitAmounts);
+        eventInformation(totalAmount, benefitAmounts, totalBenefit);
+    }
+
+    private void orderInformation(Integer totalAmount) {
+        showOrderMenus();
+        showTotalAmount(totalAmount);
+    }
+
+    private void eventInformation(Integer totalAmount, List<Integer> benefitAmounts, Integer totalBenefit) {
+        showComplimentaryMenu(totalAmount);
+        showBenefitDetails(benefitAmounts);
         showTotalBenefit(totalBenefit);
         showAfterDiscount(totalAmount, benefitAmounts);
         showEventBadge(totalBenefit);
-    };
+    }
 
-    private Integer tryReadDate() {
+    private Integer tryGenerateDate() {
         while (true) {
             try {
-                return inputView.readDate();
+                return generateDate();
             } catch (IllegalArgumentException e) {
                 outputView.printError(e);
             }
@@ -74,17 +82,21 @@ public class Planner {
         }
     }
 
+    private Integer generateDate() {
+        return inputView.readDate();
+    }
+
     private Event generateEvent(Integer date) {
         String[] inputs = inputView.readMenu();
 
         return new Event(date, inputs);
     }
 
-    private Integer findTotalAmount(Event event) {
+    private Integer findTotalAmount() {
         return event.calculateTotalAmount();
     }
 
-    private List<Integer> findBenefitAmounts(Event event, Integer totalAmount) {
+    private List<Integer> findBenefitAmounts(Integer totalAmount) {
         return event.calculateBenefitAmounts(totalAmount);
     }
 
@@ -96,13 +108,13 @@ public class Planner {
         outputView.printGreetingEvent();
     }
 
-    private void showEventPreview(Event event) {
+    private void showEventPreview() {
         String dateMessage = event.buildDateMessage();
 
         outputView.printEventPreview(dateMessage);
     }
 
-    private void showOrderMenus(Event event) {
+    private void showOrderMenus() {
         List<String> orderMenus = event.buildOrderMenus();
 
         outputView.printOrderMenus(orderMenus);
@@ -112,7 +124,7 @@ public class Planner {
         outputView.printTotalAmount(totalAmount);
     }
 
-    private void showComplimentaryMenu(Event event, Integer totalAmount) {
+    private void showComplimentaryMenu(Integer totalAmount) {
         String complimentaryMenu = event.buildComplimentaryMenu(totalAmount);
 
         outputView.printComplimentaryMenu(complimentaryMenu);
