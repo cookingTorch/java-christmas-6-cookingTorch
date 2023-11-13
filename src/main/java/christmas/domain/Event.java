@@ -40,7 +40,8 @@ public class Event {
 
     public String buildComplimentaryMenu() {
         if (isOverMinAmount()) {
-            return Menus.CHAMPAGNE.getName();
+            return (Menus.CHAMPAGNE.getName()
+                    + Messages.SPACE + Constants.ONE + Messages.PIECE);
         }
         return Messages.NOTHING;
     }
