@@ -2,6 +2,7 @@ package christmas.util;
 
 import christmas.constants.Constants;
 import christmas.constants.Errors;
+import christmas.enums.MenuTypes;
 import christmas.enums.Menus;
 import christmas.constants.Messages;
 
@@ -18,7 +19,7 @@ public class Validator {
     public void validateMenu(String input) {
         String[] inputs = input.split(Messages.COMMA);
 
-        if (invalidOrders(inputs) || duplicateMenu(inputs)) {
+        if (invalidOrders(inputs) || duplicateMenu(inputs) || onlyBeverages(inputs)) {
             throw new IllegalArgumentException(Errors.INVALID_ORDER);
         }
     }
@@ -78,5 +79,28 @@ public class Validator {
             names.add(name);
         }
         return false;
+    }
+
+    private boolean onlyBeverages(String[] inputs) {
+        String name;
+
+        for (String order : inputs) {
+            name = order.split(Messages.HYPHEN)[0];
+            if (notBeverage(name)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean notBeverage(String name) {
+        Menus[] menus = Menus.values();
+
+        for (Menus menu : menus) {
+            if (name.equals(menu.getName())) {
+                return (menu.getMenuType() != MenuTypes.BEVERAGE);
+            }
+        }
+        return true;
     }
 }
