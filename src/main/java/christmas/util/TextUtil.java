@@ -1,5 +1,6 @@
 package christmas.util;
 
+import christmas.constants.Constants;
 import christmas.constants.Messages;
 import christmas.enums.Benefit;
 
@@ -43,5 +44,18 @@ public class TextUtil {
         line += Messages.COLON + Messages.SPACE;
         line += formatter.format(-amount) + Messages.WON;
         return line;
+    }
+
+    public String buildEventBadge(Integer totalBenefit) {
+        if (totalBenefit >= Constants.SANTA_BADGE) {
+            return Messages.SANTA;
+        }
+        if (totalBenefit >= Constants.TREE_BADGE) {
+            return Messages.TREE;
+        }
+        if (totalBenefit >= Constants.STAR_BADGE) {
+            return Messages.STAR;
+        }
+        return Messages.NOTHING;
     }
 }

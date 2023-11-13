@@ -64,6 +64,12 @@ public class OutputView {
         System.out.println(Messages.WON);
     }
 
+    public void printEventBadge(String eventBadge) {
+        System.out.println();
+        System.out.println(Messages.EVENT_BADGE);
+        System.out.println(eventBadge);
+    }
+
     public void printError(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }

@@ -15,6 +15,9 @@ public class Messages {
     public static final String PIECE = "개";
     public static final String WON = "원";
     public static final String NOTHING = "없음";
+    public static final String SANTA = "산타";
+    public static final String TREE = "트리";
+    public static final String STAR = "별";
     public static final String GREETING_EVENT = "안녕하세요! 우테코 식당 " + MONTH + "이벤트 플래너입니다.";
     public static final String RESTAURANT_VISIT_DATE = MONTH + "중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
     public static final String ORDER_REQUEST
@@ -29,6 +32,7 @@ public class Messages {
     public static final String BENEFIT_DETAILS = LEFT_BRACKET + "혜택 내역" + RIGHT_BRACKET;
     public static final String TOTAL_BENEFIT = LEFT_BRACKET + "총혜택 금액" + RIGHT_BRACKET;
     public static final String AFTER_DISCOUNT = LEFT_BRACKET + "할인 후 예상 결제 금액" + RIGHT_BRACKET;
+    public static final String EVENT_BADGE = LEFT_BRACKET + MONTH + "이벤트 배지" + RIGHT_BRACKET;
 
     private Messages() {
     }

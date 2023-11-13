@@ -39,6 +39,7 @@ public class Planner {
 
     private void plannerOutput(Event event) {
         Integer totalAmount;
+        Integer totalBenefit;
         List<Integer> benefitAmounts;
 
         showOrderMenus(event);
@@ -47,8 +48,10 @@ public class Planner {
         showComplimentaryMenu(event, totalAmount);
         benefitAmounts = findBenefitAmounts(event, totalAmount);
         showBenefitDetails(benefitAmounts);
-        showTotalBenefit(benefitAmounts);
+        totalBenefit = findTotalBenefit(benefitAmounts);
+        showTotalBenefit(totalBenefit);
         showAfterDiscount(totalAmount, benefitAmounts);
+        showEventBadge(totalBenefit);
     };
 
     private Integer tryReadDate() {
@@ -85,6 +88,10 @@ public class Planner {
         return event.calculateBenefitAmounts(totalAmount);
     }
 
+    private Integer findTotalBenefit(List<Integer> benefitAmounts) {
+        return calculator.calculateTotalBenefit(benefitAmounts);
+    }
+
     private void showGreetingEvent() {
         outputView.printGreetingEvent();
     }
@@ -117,9 +124,7 @@ public class Planner {
         outputView.printBenefitDetails(benefitDetails);
     }
 
-    private void showTotalBenefit(List<Integer> benefitAmounts) {
-        Integer totalBenefit = calculator.calculateTotalBenefit(benefitAmounts);
-
+    private void showTotalBenefit(Integer totalBenefit) {
         outputView.printTotalBenefit(totalBenefit);
     }
 
@@ -127,5 +132,11 @@ public class Planner {
         Integer afterDiscount = calculator.calculateAfterDiscount(totalAmount, benefitAmounts);
 
         outputView.printAfterDiscount(afterDiscount);
+    }
+
+    private void showEventBadge(Integer totalBenefit) {
+        String eventBadge = textUtil.buildEventBadge(totalBenefit);
+
+        outputView.printEventBadge(eventBadge);
     }
 }

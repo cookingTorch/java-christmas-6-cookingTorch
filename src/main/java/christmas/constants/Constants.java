@@ -12,6 +12,9 @@ public class Constants {
     public static final Integer SECOND_WEEKEND = 2 % WEEK;
     public static final Integer FIRST_WEEKDAY = 3 % WEEK;
     public static final Integer CHRISTMAS_DAY = 25;
+    public static final Integer STAR_BADGE = 5000;
+    public static final Integer TREE_BADGE = 10000;
+    public static final Integer SANTA_BADGE = 20000;
 
     private Constants() {
     }
