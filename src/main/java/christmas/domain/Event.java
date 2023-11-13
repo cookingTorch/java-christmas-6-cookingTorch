@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import christmas.constants.Constants;
+import christmas.constants.Menus;
 import christmas.constants.Messages;
 
 import java.util.ArrayList;
@@ -36,6 +38,13 @@ public class Event {
         return totalAmount;
     }
 
+    public String buildComplimentaryMenu() {
+        if (isOverMinAmount()) {
+            return Menus.CHAMPAGNE.getName();
+        }
+        return Messages.NOTHING;
+    }
+
     private List<Orders> generateOrders(String[] inputs) {
         List<Orders> orders = new ArrayList<>();
 
@@ -43,5 +52,11 @@ public class Event {
             orders.add(new Orders(input));
         }
         return orders;
+    }
+
+    private boolean isOverMinAmount() {
+        Integer totalAmount = calculateTotalAmount();
+
+        return (totalAmount > Constants.MIN_AMOUNT);
     }
 }

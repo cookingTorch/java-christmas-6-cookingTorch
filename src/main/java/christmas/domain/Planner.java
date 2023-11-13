@@ -21,6 +21,7 @@ public class Planner {
         outputView.printEventPreview(event.buildDateMessage());
         showOrderMenus(event);
         showTotalAmount(event);
+        showComplimentaryMenu(event);
     }
 
     private Integer tryReadDate() {
@@ -59,5 +60,11 @@ public class Planner {
         Integer totalAmount = event.calculateTotalAmount();
 
         outputView.printTotalAmount(totalAmount);
+    }
+
+    private void showComplimentaryMenu(Event event) {
+        String complimentaryMenu = event.buildComplimentaryMenu();
+
+        outputView.printComplimentaryMenu(complimentaryMenu);
     }
 }
