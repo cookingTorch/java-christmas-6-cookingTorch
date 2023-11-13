@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.model.Event;
+import christmas.util.Calculator;
 import christmas.util.TextUtil;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -10,11 +11,13 @@ import java.util.List;
 public class Planner {
     private final InputView inputView;
     private final OutputView outputView;
+    private final Calculator calculator;
     private final TextUtil textUtil;
 
     public Planner() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.calculator = new Calculator();
         this.textUtil = new TextUtil();
     }
 
@@ -44,6 +47,7 @@ public class Planner {
         showComplimentaryMenu(event, totalAmount);
         benefitAmounts = findBenefitAmounts(event, totalAmount);
         showBenefitDetails(benefitAmounts);
+        showTotalBenefit(benefitAmounts);
     };
 
     private Integer tryReadDate() {
@@ -110,5 +114,11 @@ public class Planner {
         List<String> benefitDetails = textUtil.buildBenefitDetails(benefitAmounts);
 
         outputView.printBenefitDetails(benefitDetails);
+    }
+
+    private void showTotalBenefit(List<Integer> benefitAmounts) {
+        Integer totalBenefit = calculator.calculateTotalBenefit(benefitAmounts);
+
+        outputView.printTotalBenefit(totalBenefit);
     }
 }

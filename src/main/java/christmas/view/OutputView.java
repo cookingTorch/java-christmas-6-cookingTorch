@@ -46,6 +46,15 @@ public class OutputView {
         }
     }
 
+    public void printTotalBenefit(Integer totalBenefit) {
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+
+        System.out.println();
+        System.out.println(Messages.TOTAL_BENEFIT);
+        System.out.print(formatter.format(-totalBenefit));
+        System.out.println(Messages.WON);
+    }
+
     public void printError(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
