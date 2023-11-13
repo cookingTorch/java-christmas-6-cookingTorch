@@ -116,7 +116,7 @@ public class Validator {
         String number;
 
         for (String input : inputs) {
-            number = input.split(Messages.HYPHEN)[0];
+            number = input.split(Messages.HYPHEN)[1];
             orderCount += Integer.parseInt(number);
         }
         return orderCount;
