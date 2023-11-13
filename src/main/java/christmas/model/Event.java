@@ -51,11 +51,11 @@ public class Event {
         List<Integer> benefitAmounts = new ArrayList<>();
         Benefit[] benefits = Benefit.values();
 
-        benefitAmounts.add(dDayBenefit(benefits[0]));
-        benefitAmounts.add(weekdayBenefit(benefits[1]));
-        benefitAmounts.add(weekendBenefit(benefits[2]));
-        benefitAmounts.add(specialBenefit(benefits[3]));
-        benefitAmounts.add(giftBenefit(benefits[4], totalAmount));
+        if (totalAmount < Constants.MIN_ORDER) {
+            noBenefitAmounts(benefitAmounts, benefits);
+            return benefitAmounts;
+        }
+        addBenefits(benefitAmounts, benefits, totalAmount);
         return benefitAmounts;
     }
 
@@ -66,6 +66,20 @@ public class Event {
             orders.add(new Orders(input));
         }
         return orders;
+    }
+
+    private void noBenefitAmounts(List<Integer> benefitAmounts, Benefit[] benefits) {
+        for (int i = 0; i < benefits.length; i++) {
+            benefitAmounts.add(0);
+        }
+    }
+
+    private void addBenefits(List<Integer> benefitAmounts, Benefit[] benefits, Integer totalAmount) {
+        benefitAmounts.add(dDayBenefit(benefits[0]));
+        benefitAmounts.add(weekdayBenefit(benefits[1]));
+        benefitAmounts.add(weekendBenefit(benefits[2]));
+        benefitAmounts.add(specialBenefit(benefits[3]));
+        benefitAmounts.add(giftBenefit(benefits[4], totalAmount));
     }
 
     private Integer dDayBenefit(Benefit benefit) {
