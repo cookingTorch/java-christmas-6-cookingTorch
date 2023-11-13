@@ -83,7 +83,7 @@ public class ChristmasTest {
     void outputComplimentaryMenu() {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
 
-        assertThat(event.buildComplimentaryMenu())
+        assertThat(event.buildComplimentaryMenu(169500))
                 .contains("샴페인");
     }
 
@@ -92,7 +92,7 @@ public class ChristmasTest {
     void nothingComplimentaryMenu() {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-1","바비큐립-1"});
 
-        assertThat(event.buildComplimentaryMenu())
+        assertThat(event.buildComplimentaryMenu(114500))
                 .contains("없음");
     }
 }

@@ -10,6 +10,8 @@ public class Planner {
     private final InputView inputView;
     private final OutputView outputView;
 
+    private Event event;
+
     public Planner() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
@@ -18,11 +20,11 @@ public class Planner {
     public void showChristmasPromotion() {
         outputView.printGreetingEvent();
         Integer date = tryReadDate();
-        Event event = tryGenerateEvent(date);
+        event = tryGenerateEvent(date);
         outputView.printEventPreview(event.buildDateMessage());
-        showOrderMenus(event);
-        showTotalAmount(event);
-        showComplimentaryMenu(event);
+        showOrderMenus();
+        Integer totalAmount = showTotalAmount();
+        showComplimentaryMenu(totalAmount);
     }
 
     private Integer tryReadDate() {
@@ -51,20 +53,21 @@ public class Planner {
         return new Event(date, inputs);
     }
 
-    private void showOrderMenus(Event event) {
+    private void showOrderMenus() {
         List<String> orderMenus = event.buildOrderMenus();
 
         outputView.printOrderMenus(orderMenus);
     }
 
-    private void showTotalAmount(Event event) {
+    private Integer showTotalAmount() {
         Integer totalAmount = event.calculateTotalAmount();
 
         outputView.printTotalAmount(totalAmount);
+        return totalAmount;
     }
 
-    private void showComplimentaryMenu(Event event) {
-        String complimentaryMenu = event.buildComplimentaryMenu();
+    private void showComplimentaryMenu(Integer totalAmount) {
+        String complimentaryMenu = event.buildComplimentaryMenu(totalAmount);
 
         outputView.printComplimentaryMenu(complimentaryMenu);
     }

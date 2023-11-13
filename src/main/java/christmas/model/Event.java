@@ -38,7 +38,7 @@ public class Event {
         return totalAmount;
     }
 
-    public String buildComplimentaryMenu() {
+    public String buildComplimentaryMenu(Integer totalAmount) {
         if (isOverMinAmount()) {
             return (Menus.CHAMPAGNE.getName()
                     + Messages.SPACE + Constants.ONE + Messages.PIECE);
