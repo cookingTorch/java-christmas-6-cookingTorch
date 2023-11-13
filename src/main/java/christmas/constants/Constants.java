@@ -5,6 +5,7 @@ public class Constants {
     public static final Integer FIRST_DATE = 1;
     public static final Integer LAST_DATE = 31;
     public static final Integer GIFT_NUMBER = 1;
+    public static final Integer MAX_ORDER = 20;
     public static final Integer MIN_ORDER = 10000;
     public static final Integer MIN_AMOUNT = 120000;
     public static final Integer START_AMOUNT = 1000;

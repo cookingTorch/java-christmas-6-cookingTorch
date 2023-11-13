@@ -19,7 +19,8 @@ public class Validator {
     public void validateMenu(String input) {
         String[] inputs = input.split(Messages.COMMA);
 
-        if (invalidOrders(inputs) || duplicateMenu(inputs) || onlyBeverages(inputs)) {
+        if (invalidOrders(inputs) || duplicateMenu(inputs)
+                || onlyBeverages(inputs) || overMaxOrders(inputs)) {
             throw new IllegalArgumentException(Errors.INVALID_ORDER);
         }
     }
@@ -102,5 +103,22 @@ public class Validator {
             }
         }
         return true;
+    }
+
+    private boolean overMaxOrders(String[] inputs) {
+        Integer orderCount = countOrders(inputs);
+
+        return (orderCount > Constants.MAX_ORDER);
+    }
+
+    private Integer countOrders(String[] inputs) {
+        int orderCount = 0;
+        String number;
+
+        for (String input : inputs) {
+            number = input.split(Messages.HYPHEN)[0];
+            orderCount += Integer.parseInt(number);
+        }
+        return orderCount;
     }
 }
