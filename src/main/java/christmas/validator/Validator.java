@@ -1,5 +1,6 @@
 package christmas.validator;
 
+import christmas.constants.Constants;
 import christmas.constants.Errors;
 import christmas.constants.Menus;
 import christmas.constants.Messages;
@@ -27,11 +28,11 @@ public class Validator {
     }
 
     private boolean lowerRange(String input) {
-        return (Integer.parseInt(input) < 1);
+        return (Integer.parseInt(input) < Constants.FIRST_DATE);
     }
 
     private boolean upperRange(String input) {
-        return (Integer.parseInt(input) > 31);
+        return (Integer.parseInt(input) > Constants.LAST_DATE);
     }
 
     private boolean invalidOrders(String[] inputs) {
