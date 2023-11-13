@@ -1,6 +1,7 @@
 package christmas;
 
 import christmas.model.Event;
+import christmas.util.Calculator;
 import christmas.util.TextUtil;
 import christmas.util.Validator;
 import org.junit.jupiter.api.DisplayName;
@@ -13,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ChristmasTest {
     private final Validator validator = new Validator();
+    private final Calculator calculator = new Calculator();
     private final TextUtil textUtil = new TextUtil();
 
     @DisplayName("방문 날짜가 숫자가 아니면 에러가 발생한다.")
@@ -127,5 +129,15 @@ public class ChristmasTest {
 
         assertThat(textUtil.buildBenefitDetails(benefitAmounts))
                 .containsExactly("없음");
+    }
+
+    @DisplayName("혜택 내역들을 더해 총혜택 금액을 계산한다.")
+    @Test
+    void outputTotalBenefit() {
+        Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(169500);
+
+        assertThat(calculator.calculateTotalBenefit(benefitAmounts))
+                .isEqualTo(29400);
     }
 }
