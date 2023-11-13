@@ -27,6 +27,15 @@ public class Event {
         return orderMenus;
     }
 
+    public Integer calculateTotalAmount() {
+        Integer totalAmount = 0;
+
+        for (Orders order : orders) {
+            totalAmount += order.calculateCost();
+        }
+        return totalAmount;
+    }
+
     private List<Orders> generateOrders(String[] inputs) {
         List<Orders> orders = new ArrayList<>();
 

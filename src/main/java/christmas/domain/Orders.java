@@ -19,6 +19,10 @@ public class Orders {
         return (menu.getName() + Messages.SPACE + number + Messages.PIECE);
     }
 
+    public Integer calculateCost() {
+        return (menu.getCost() * number);
+    }
+
     private Menus findMenu(String inputName) {
         Menus[] menus = Menus.values();
 

@@ -6,8 +6,8 @@ import christmas.view.OutputView;
 import java.util.List;
 
 public class Planner {
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public Planner() {
         this.inputView = new InputView();
@@ -20,6 +20,7 @@ public class Planner {
         Event event = tryGenerateEvent(date);
         outputView.printEventPreview(event.buildDateMessage());
         showOrderMenus(event);
+        showTotalAmount(event);
     }
 
     private Integer tryReadDate() {
@@ -52,5 +53,11 @@ public class Planner {
         List<String> orderMenus = event.buildOrderMenus();
 
         outputView.printOrderMenus(orderMenus);
+    }
+
+    private void showTotalAmount(Event event) {
+        Integer totalAmount = event.calculateTotalAmount();
+
+        outputView.printTotalAmount(totalAmount);
     }
 }

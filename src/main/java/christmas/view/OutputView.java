@@ -1,8 +1,8 @@
 package christmas.view;
 
-import christmas.constants.Menus;
 import christmas.constants.Messages;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 public class OutputView {
@@ -21,6 +21,15 @@ public class OutputView {
         for (String orderMenu : orderMenus) {
             System.out.println(orderMenu);
         }
+    }
+
+    public void printTotalAmount(Integer totalAmount) {
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+
+        System.out.println();
+        System.out.println(Messages.TOTAL_AMOUNT);
+        System.out.print(formatter.format(totalAmount));
+        System.out.println(Messages.WON);
     }
 
     public void printError(IllegalArgumentException e) {
