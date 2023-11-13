@@ -77,4 +77,22 @@ public class ChristmasTest {
         assertThat(event.calculateTotalAmount())
                 .isEqualTo(169500);
     }
+
+    @DisplayName("12만 원이 넘으면 샴페인을 증정 메뉴로 반환한다.")
+    @Test
+    void outputComplimentaryMenu() {
+        Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
+
+        assertThat(event.buildComplimentaryMenu())
+                .contains("샴페인");
+    }
+
+    @DisplayName("12만 원이 넘지 않으면 증정 메뉴가 없다.")
+    @Test
+    void nothingComplimentaryMenu() {
+        Event event = new Event(25, new String[] {"타파스-1","티본스테이크-1","바비큐립-1"});
+
+        assertThat(event.buildComplimentaryMenu())
+                .contains("없음");
+    }
 }
