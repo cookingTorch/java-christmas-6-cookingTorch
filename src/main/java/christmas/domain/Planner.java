@@ -3,6 +3,8 @@ package christmas.domain;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
+import java.util.List;
+
 public class Planner {
     private InputView inputView;
     private OutputView outputView;
@@ -16,7 +18,8 @@ public class Planner {
         outputView.printGreetingEvent();
         Integer date = tryReadDate();
         Event event = tryGenerateEvent(date);
-        outputView.printEventPreview(event.dateMessage());
+        outputView.printEventPreview(event.buildDateMessage());
+        showOrderMenus(event);
     }
 
     private Integer tryReadDate() {
@@ -43,5 +46,11 @@ public class Planner {
         String[] inputs = inputView.readMenu();
 
         return new Event(date, inputs);
+    }
+
+    private void showOrderMenus(Event event) {
+        List<String> orderMenus = event.buildOrderMenus();
+
+        outputView.printOrderMenus(orderMenus);
     }
 }

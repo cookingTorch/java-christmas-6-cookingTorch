@@ -15,6 +15,10 @@ public class Orders {
         this.number = findNumber(inputs[1]);
     }
 
+    public String buildOrderMenu() {
+        return (menu.getName() + Messages.SPACE + number + Messages.PIECE);
+    }
+
     private Menus findMenu(String inputName) {
         Menus[] menus = Menus.values();
 

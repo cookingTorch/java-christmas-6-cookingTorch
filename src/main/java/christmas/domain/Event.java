@@ -14,8 +14,17 @@ public class Event {
         this.orders = generateOrders(inputs);
     }
 
-    public String dateMessage() {
+    public String buildDateMessage() {
         return (Messages.MONTH + date.toString() + Messages.DAY);
+    }
+
+    public List<String> buildOrderMenus() {
+        List<String> orderMenus = new ArrayList<>();
+
+        for (Orders order : orders) {
+            orderMenus.add(order.buildOrderMenu());
+        }
+        return orderMenus;
     }
 
     private List<Orders> generateOrders(String[] inputs) {
