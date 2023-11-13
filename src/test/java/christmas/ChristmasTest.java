@@ -73,6 +73,13 @@ public class ChristmasTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("20개를 초과하여 주문하면 에러가 발생한다.")
+    @Test
+    void orderOverMaxOrder() {
+        assertThatThrownBy(() -> validator.validateMenu("타파스-8,티본스테이크-6,바비큐립-7"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("주문 메뉴를 출력하기 위해 문자열을 만든다.")
     @Test
     void outputOrderMenus() {
