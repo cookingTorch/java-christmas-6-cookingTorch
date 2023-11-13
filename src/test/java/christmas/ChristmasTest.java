@@ -172,4 +172,14 @@ public class ChristmasTest {
         assertThat(textUtil.buildEventBadge(totalBenefit))
                 .isEqualTo("없음");
     }
+
+    @DisplayName("총주문 금액 10000원 미만은 이벤트가 적용되지 않는다.")
+    @Test
+    void smallOrder() {
+        Event event = new Event(25, new String[] {"양송이수프-1","제로콜라-1"});
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(9000);
+
+        assertThat(textUtil.buildBenefitDetails(benefitAmounts))
+                .containsExactly("없음");
+    }
 }
