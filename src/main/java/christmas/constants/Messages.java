@@ -23,13 +23,13 @@ public class Messages {
             + Menus.RED_WINE.getName() + HYPHEN + "1" + COMMA
             + Menus.CHOCOLATE_CAKE.getName() + HYPHEN + "1)";
     public static final String EVENT_PREVIEW = "에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
-    public static final String ORDER_MENU = LEFT_BRACKET + "주문 메뉴" + RIGHT_BRACKET;
-    public static final String TOTAL_AMOUNT = LEFT_BRACKET + "할인 전 총주문 금액" + RIGHT_BRACKET;
-    public static final String COMPLIMENTARY_MENU = LEFT_BRACKET + "증정 메뉴" + RIGHT_BRACKET;
-    public static final String BENEFIT_DETAILS = LEFT_BRACKET + "혜택 내역" + RIGHT_BRACKET;
-    public static final String TOTAL_BENEFIT = LEFT_BRACKET + "총혜택 금액" + RIGHT_BRACKET;
-    public static final String AFTER_DISCOUNT = LEFT_BRACKET + "할인 후 예상 결제 금액" + RIGHT_BRACKET;
-    public static final String EVENT_BADGE = LEFT_BRACKET + MONTH + "이벤트 배지" + RIGHT_BRACKET;
+    public static final String ORDER_MENU = "주문 메뉴";
+    public static final String TOTAL_AMOUNT = "할인 전 총주문 금액";
+    public static final String COMPLIMENTARY_MENU = "증정 메뉴";
+    public static final String BENEFIT_DETAILS = "혜택 내역";
+    public static final String TOTAL_BENEFIT = "총혜택 금액";
+    public static final String AFTER_DISCOUNT = "할인 후 예상 결제 금액";
+    public static final String EVENT_BADGE = MONTH + "이벤트 배지";
 
     private Messages() {
     }

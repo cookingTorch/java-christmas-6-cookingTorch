@@ -17,57 +17,51 @@ public class OutputView {
     }
 
     public void printPreviewMessage(String date) {
-        System.out.print(date);
-        System.out.println(Messages.EVENT_PREVIEW);
+        System.out.println(date + Messages.EVENT_PREVIEW);
     }
 
     public void printOrderMenus(List<String> orderMenus) {
-        System.out.println();
-        System.out.println(Messages.ORDER_MENU);
+        printTitle(Messages.ORDER_MENU);
         for (String orderMenu : orderMenus) {
             System.out.println(orderMenu);
         }
     }
 
     public void printTotalAmount(Integer totalAmount) {
-        System.out.println();
-        System.out.println(Messages.TOTAL_AMOUNT);
-        System.out.print(formatter.format(totalAmount));
-        System.out.println(Messages.WON);
+        printTitle(Messages.TOTAL_AMOUNT);
+        System.out.println(formatter.format(totalAmount) + Messages.WON);
     }
 
     public void printComplimentaryMenu(String complimentaryMenu) {
-        System.out.println();
-        System.out.println(Messages.COMPLIMENTARY_MENU);
+        printTitle(Messages.COMPLIMENTARY_MENU);
         System.out.println(complimentaryMenu);
     }
 
     public void printBenefitDetails(List<String> benefitDetails) {
-        System.out.println();
-        System.out.println(Messages.BENEFIT_DETAILS);
+        printTitle(Messages.BENEFIT_DETAILS);
         for (String line : benefitDetails) {
             System.out.println(line);
         }
     }
 
     public void printTotalBenefit(Integer totalBenefit) {
-        System.out.println();
-        System.out.println(Messages.TOTAL_BENEFIT);
-        System.out.print(formatter.format(-totalBenefit));
-        System.out.println(Messages.WON);
+        printTitle(Messages.TOTAL_BENEFIT);
+        System.out.println(formatter.format(-totalBenefit) + Messages.WON);
     }
 
     public void printAfterDiscount(Integer afterDiscount) {
-        System.out.println();
-        System.out.println(Messages.AFTER_DISCOUNT);
-        System.out.print(formatter.format(afterDiscount));
-        System.out.println(Messages.WON);
+        printTitle(Messages.AFTER_DISCOUNT);
+        System.out.println(formatter.format(afterDiscount) + Messages.WON);
     }
 
     public void printEventBadge(String eventBadge) {
-        System.out.println();
-        System.out.println(Messages.EVENT_BADGE);
+        printTitle(Messages.EVENT_BADGE);
         System.out.println(eventBadge);
+    }
+
+    private void printTitle(String title) {
+        System.out.println();
+        System.out.println(Messages.LEFT_BRACKET + title + Messages.RIGHT_BRACKET);
     }
 
     public void printError(IllegalArgumentException e) {
