@@ -102,8 +102,9 @@ public class ChristmasTest {
     @Test
     void outputComplimentaryMenu() {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
+        Integer totalAmount = event.calculateTotalAmount();
 
-        assertThat(event.buildComplimentaryMenu(169500))
+        assertThat(event.buildComplimentaryMenu(totalAmount))
                 .isEqualTo("샴페인 1개");
     }
 
@@ -111,8 +112,9 @@ public class ChristmasTest {
     @Test
     void nothingComplimentaryMenu() {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-1","바비큐립-1"});
+        Integer totalAmount = event.calculateTotalAmount();
 
-        assertThat(event.buildComplimentaryMenu(114500))
+        assertThat(event.buildComplimentaryMenu(totalAmount))
                 .isEqualTo("없음");
     }
 
@@ -120,8 +122,9 @@ public class ChristmasTest {
     @Test
     void outputBenefitAmounts() {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
+        Integer totalAmount = event.calculateTotalAmount();
 
-        assertThat(event.calculateBenefitAmounts(169500))
+        assertThat(event.calculateBenefitAmounts(totalAmount))
                 .containsExactly(3400, 0, 0, 1000, 25000);
     }
 
@@ -129,7 +132,8 @@ public class ChristmasTest {
     @Test
     void outputBenefitDetails() {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
-        List<Integer> benefitAmounts = event.calculateBenefitAmounts(169500);
+        Integer totalAmount = event.calculateTotalAmount();
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(totalAmount);
 
         assertThat(textUtil.buildBenefitDetails(benefitAmounts))
                 .containsExactly("크리스마스 디데이 할인: -3,400원", "특별 할인: -1,000원", "증정 이벤트: -25,000원");
@@ -139,7 +143,8 @@ public class ChristmasTest {
     @Test
     void nothingBenefitDetails() {
         Event event = new Event(26, new String[] {"타파스-1","티본스테이크-1","바비큐립-1"});
-        List<Integer> benefitAmounts = event.calculateBenefitAmounts(114500);
+        Integer totalAmount = event.calculateTotalAmount();
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(totalAmount);
 
         assertThat(textUtil.buildBenefitDetails(benefitAmounts))
                 .containsExactly("없음");
@@ -149,7 +154,8 @@ public class ChristmasTest {
     @Test
     void outputTotalBenefit() {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
-        List<Integer> benefitAmounts = event.calculateBenefitAmounts(169500);
+        Integer totalAmount = event.calculateTotalAmount();
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(totalAmount);
 
         assertThat(calculator.calculateTotalBenefit(benefitAmounts))
                 .isEqualTo(29400);
@@ -159,9 +165,10 @@ public class ChristmasTest {
     @Test
     void outputAfterDiscount() {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
-        List<Integer> benefitAmounts = event.calculateBenefitAmounts(169500);
+        Integer totalAmount = event.calculateTotalAmount();
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(totalAmount);
 
-        assertThat(calculator.calculateAfterDiscount(169500, benefitAmounts))
+        assertThat(calculator.calculateAfterDiscount(totalAmount, benefitAmounts))
                 .isEqualTo(165100);
     }
 
@@ -169,7 +176,8 @@ public class ChristmasTest {
     @Test
     void outputEventBadge() {
         Event event = new Event(23, new String[] {"타파스-1","티본스테이크-1","바비큐립-1"});
-        List<Integer> benefitAmounts = event.calculateBenefitAmounts(114500);
+        Integer totalAmount = event.calculateTotalAmount();
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(totalAmount);
         Integer totalBenefit = calculator.calculateTotalBenefit(benefitAmounts);
 
         assertThat(textUtil.buildEventBadge(totalBenefit))
@@ -180,7 +188,8 @@ public class ChristmasTest {
     @Test
     void nothingEventBadge() {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-1","바비큐립-1"});
-        List<Integer> benefitAmounts = event.calculateBenefitAmounts(114500);
+        Integer totalAmount = event.calculateTotalAmount();
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(totalAmount);
         Integer totalBenefit = calculator.calculateTotalBenefit(benefitAmounts);
 
         assertThat(textUtil.buildEventBadge(totalBenefit))
@@ -191,7 +200,8 @@ public class ChristmasTest {
     @Test
     void smallOrder() {
         Event event = new Event(25, new String[] {"양송이수프-1","제로콜라-1"});
-        List<Integer> benefitAmounts = event.calculateBenefitAmounts(9000);
+        Integer totalAmount = event.calculateTotalAmount();
+        List<Integer> benefitAmounts = event.calculateBenefitAmounts(totalAmount);
 
         assertThat(textUtil.buildBenefitDetails(benefitAmounts))
                 .containsExactly("없음");
