@@ -12,11 +12,11 @@ public class OutputView {
         this.formatter = NumberFormat.getNumberInstance();
     }
 
-    public void printGreetingEvent() {
+    public void printGreetingMessage() {
         System.out.println(Messages.GREETING_EVENT);
     }
 
-    public void printEventPreview(String date) {
+    public void printPreviewMessage(String date) {
         System.out.print(date);
         System.out.println(Messages.EVENT_PREVIEW);
     }

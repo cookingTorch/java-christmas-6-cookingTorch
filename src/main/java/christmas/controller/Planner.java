@@ -24,9 +24,9 @@ public class Planner {
     }
 
     public void christmasPromotion() {
-        showGreetingEvent();
+        showGreetingMessage();
         plannerInput();
-        showEventPreview();
+        showPreviewMessage();
         plannerOutput();
     }
 
@@ -43,18 +43,14 @@ public class Planner {
         List<Integer> benefitAmounts;
 
         totalAmount = findTotalAmount();
-        showOrderResult(totalAmount);
         benefitAmounts = findBenefitAmounts(totalAmount);
         totalBenefit = findTotalBenefit(benefitAmounts);
-        showEventResult(totalAmount, benefitAmounts, totalBenefit);
+        showResult(totalAmount, benefitAmounts, totalBenefit);
     }
 
-    private void showOrderResult(Integer totalAmount) {
+    private void showResult(Integer totalAmount, List<Integer> benefitAmounts, Integer totalBenefit) {
         showOrderMenus();
         showTotalAmount(totalAmount);
-    }
-
-    private void showEventResult(Integer totalAmount, List<Integer> benefitAmounts, Integer totalBenefit) {
         showComplimentaryMenu(totalAmount);
         showBenefitDetails(benefitAmounts);
         showTotalBenefit(totalBenefit);
@@ -104,14 +100,14 @@ public class Planner {
         return calculator.calculateTotalBenefit(benefitAmounts);
     }
 
-    private void showGreetingEvent() {
-        outputView.printGreetingEvent();
+    private void showGreetingMessage() {
+        outputView.printGreetingMessage();
     }
 
-    private void showEventPreview() {
+    private void showPreviewMessage() {
         String dateMessage = event.buildDateMessage();
 
-        outputView.printEventPreview(dateMessage);
+        outputView.printPreviewMessage(dateMessage);
     }
 
     private void showOrderMenus() {
