@@ -1,7 +1,8 @@
-#### 2023-11-13
+#### 2023-11-15
 
 ##### Documentation Changes
 
+* **CHANGELOG:**  update CHANGELOG.md with recent modifications (4994edcc)
 * **README:**
   *  check completion for max order size validation rule (2b691874)
   *  document error for orders exceeding 20 items (221538be)
@@ -36,6 +37,7 @@
 ##### Bug Fixes
 
 * **Validator:**
+  *  ensure notBeverage returns false on loop exit (f4d42799)
   *  correct the item count extraction in order counting (9ce317c7)
   *  implement check for max order size (adbf28d8)
 * **Validatior:**  enforce food item with beverage orders (1ecda961)
@@ -44,9 +46,14 @@
 
 ##### Refactors
 
+* **Menus:**  add findByName method to Menus enum (8c9ba904)
+* **OutputView:**  consolidate common print operations in printTitle (b906ae14)
 * **Planner:**
+  *  reorganize method order for readability (5555e47d)
+  *  rename methods for clarity and consistency (2d44d039)
   *  centralize Event instance as a private field (f6d191c5)
   *  encapsulate Event instance as a private field (2bd3f584)
+* **Badge:**  consolidate badge-related constants into Badge enum (c5e43d94)
 * **Event:**  add totalAmount parameter to isOverMinAmount (b94b9dc1)
 * **structure:**  reorganize package layout for classes (ebef03bd)
 * **constants:**  use constants for date range boundaries (82eea5ce)
@@ -54,6 +61,8 @@
 ##### Tests
 
 * **ChristmasTest:**
+  *  refine tests to use containsExactly for precision (c34e6008)
+  *  replace hardcoded totalAmount with calculation method (6fa73a8d)
   *  ensure error for orders with more than 20 items (e2f2f9f8)
   *  add check for beverage-only orders (f5b35881)
   *  ensure no benefits for orders under 10,000 won (0689ed56)
