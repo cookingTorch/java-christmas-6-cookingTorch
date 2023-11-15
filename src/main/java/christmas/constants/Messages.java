@@ -15,9 +15,6 @@ public class Messages {
     public static final String PIECE = "개";
     public static final String WON = "원";
     public static final String NOTHING = "없음";
-    public static final String SANTA = "산타";
-    public static final String TREE = "트리";
-    public static final String STAR = "별";
     public static final String GREETING_EVENT = "안녕하세요! 우테코 식당 " + MONTH + "이벤트 플래너입니다.";
     public static final String RESTAURANT_VISIT_DATE = MONTH + "중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
     public static final String ORDER_REQUEST
