@@ -38,6 +38,13 @@ public class ChristmasTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("방문 날짜에 아무것도 입력되지 않으면 에러가 발생한다.")
+    @Test
+    void dateNothing() {
+        assertThatThrownBy(() -> validator.validateDate(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("메뉴판에 없는 메뉴를 입력하는 경우 에러가 발생한다.")
     @Test
     void orderNotInMenu() {
@@ -56,6 +63,27 @@ public class ChristmasTest {
     @Test
     void orderInvalidForm() {
         assertThatThrownBy(() -> validator.validateMenu("타파스-1,티본스테이크--2,바비큐립-1"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("메뉴 입력에 아무것도 들어오지 않으면 에러가 발생한다.")
+    @Test
+    void orderNothing() {
+        assertThatThrownBy(() -> validator.validateMenu(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("메뉴 입력에 ,만 들어오면 에러가 발생한다.")
+    @Test
+    void orderComma() {
+        assertThatThrownBy(() -> validator.validateMenu(","))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("메뉴 입력에 -만 들어오면 에러가 발생한다.")
+    @Test
+    void orderHyphen() {
+        assertThatThrownBy(() -> validator.validateMenu("-"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
