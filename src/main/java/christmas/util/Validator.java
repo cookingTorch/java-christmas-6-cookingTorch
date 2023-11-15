@@ -102,7 +102,7 @@ public class Validator {
                 return (menu.getMenuType() != MenuTypes.BEVERAGE);
             }
         }
-        return true;
+        return false;
     }
 
     private boolean overMaxOrders(String[] inputs) {
