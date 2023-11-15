@@ -2,7 +2,9 @@
 
 ##### Documentation Changes
 
-* **CHANGELOG:**  update CHANGELOG.md with recent modifications (4994edcc)
+* **CHANGELOG:**
+  *  update CHANGELOG.md with recent modifications (5ad7e57a)
+  *  update CHANGELOG.md with recent modifications (4994edcc)
 * **README:**
   *  check completion for max order size validation rule (2b691874)
   *  document error for orders exceeding 20 items (221538be)
@@ -61,6 +63,7 @@
 ##### Tests
 
 * **ChristmasTest:**
+  *  add test for empty input exception handling (9f87f78a)
   *  refine tests to use containsExactly for precision (c34e6008)
   *  replace hardcoded totalAmount with calculation method (6fa73a8d)
   *  ensure error for orders with more than 20 items (e2f2f9f8)
