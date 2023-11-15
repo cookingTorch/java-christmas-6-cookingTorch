@@ -86,7 +86,7 @@ public class ChristmasTest {
         Event event = new Event(25, new String[] {"타파스-1","티본스테이크-2","바비큐립-1"});
 
         assertThat(event.buildOrderMenus())
-                .contains("타파스 1개", "티본스테이크 2개", "바비큐립 1개");
+                .containsExactly("타파스 1개", "티본스테이크 2개", "바비큐립 1개");
     }
 
     @DisplayName("할인 전 총주문 금액을 계산한다.")
