@@ -43,18 +43,18 @@ public class Planner {
         List<Integer> benefitAmounts;
 
         totalAmount = findTotalAmount();
-        orderInformation(totalAmount);
+        showOrderResult(totalAmount);
         benefitAmounts = findBenefitAmounts(totalAmount);
         totalBenefit = findTotalBenefit(benefitAmounts);
-        eventInformation(totalAmount, benefitAmounts, totalBenefit);
+        showEventResult(totalAmount, benefitAmounts, totalBenefit);
     }
 
-    private void orderInformation(Integer totalAmount) {
+    private void showOrderResult(Integer totalAmount) {
         showOrderMenus();
         showTotalAmount(totalAmount);
     }
 
-    private void eventInformation(Integer totalAmount, List<Integer> benefitAmounts, Integer totalBenefit) {
+    private void showEventResult(Integer totalAmount, List<Integer> benefitAmounts, Integer totalBenefit) {
         showComplimentaryMenu(totalAmount);
         showBenefitDetails(benefitAmounts);
         showTotalBenefit(totalBenefit);
