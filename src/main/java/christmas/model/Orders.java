@@ -39,14 +39,7 @@ public class Orders {
     }
 
     private Menus findMenu(String inputName) {
-        Menus[] menus = Menus.values();
-
-        for (Menus menu : menus) {
-            if (inputName.equals(menu.getName())) {
-                return menu;
-            }
-        }
-        throw new IllegalArgumentException(Errors.INVALID_ORDER);
+        return Menus.findByName(inputName);
     }
 
     private Integer findNumber(String inputNumber) {

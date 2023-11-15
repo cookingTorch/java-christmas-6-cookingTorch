@@ -1,5 +1,9 @@
 package christmas.enums;
 
+import christmas.constants.Errors;
+
+import java.util.Objects;
+
 public enum Menus {
     MUSHROOM_SOUP("양송이수프", 6000, MenuTypes.APPETIZER),
     TAPAS("타파스", 5500, MenuTypes.APPETIZER),
@@ -34,5 +38,14 @@ public enum Menus {
 
     public MenuTypes getMenuType() {
         return this.menuType;
+    }
+
+    public static Menus findByName(String name) {
+        for (Menus menu : Menus.values()) {
+            if (Objects.equals(menu.getName(), name)) {
+                return menu;
+            }
+        }
+        throw new IllegalArgumentException(Errors.INVALID_ORDER);
     }
 }

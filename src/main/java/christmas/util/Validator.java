@@ -95,14 +95,9 @@ public class Validator {
     }
 
     private boolean notBeverage(String name) {
-        Menus[] menus = Menus.values();
+        Menus menu = Menus.findByName(name);
 
-        for (Menus menu : menus) {
-            if (name.equals(menu.getName())) {
-                return (menu.getMenuType() != MenuTypes.BEVERAGE);
-            }
-        }
-        return false;
+        return (menu.getMenuType() != MenuTypes.BEVERAGE);
     }
 
     private boolean overMaxOrders(String[] inputs) {
